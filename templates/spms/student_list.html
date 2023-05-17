@@ -1,0 +1,23 @@
+{%  extends 'base.html' %}
+{%  block head %}
+    <title>Students</title>
+{%  endblock %}
+{% block body %}
+<h1>Students</h1>
+    <!-- button bar with create, edit, delete in a div with class="btn-group" -->
+    <div class="btn-group">
+        <a href="/student/create" class="btn btn-primary">Create</a>
+
+    </div>
+
+    <ul class="list-group">
+        {% for student in student_list %}
+            <li class="list-group-item">
+                <a href="/student/{{ student.id }}" class="btn btn-primary">View</a>
+                <a href="/student/{{ student.id }}/update" class="btn btn-primary">Edit</a>
+                <a href="/student/{{ student.id }}/delete" class="btn btn-primary">Delete</a>
+                {{ student.first_name }}, {{ student.last_name}} ({{ student.username }}) </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block head %}
+    {% if project %}
+        <title>Editing {{ project.first_name }}, {{ project.last_name }} ({{ project.username }}) </title>
+    {% else %}
+        <title>New project</title>
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    <!-- project edit form using django forms and bootstrap style if project object in context, otherwise create new -->
+    {% if project %}
+        <h1>Edit project</h1>
+        <form method="post" action="{% url 'project_update' pk=project.pk %}" class="project-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="save btn btn-default">Save</button>
+        </form>
+    {% else %}
+        <h1>Create project</h1>
+        <form method="post" action="{% url 'project_create' %}" class="project-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="save btn btn-default">Save</button>
+        </form>
+    {% endif %}
+{% endblock %}
+```

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>{{ student.first_name }}, {{ student.last_name }} ({{ student.username }}) </title>
+{% endblock %}
+
+{% block body %}
+    <!-- student read only view using django model introspection and bootstrap style -->
+    <p><strong>name:</strong> {{ student.first_name }}</p>
+    <p><strong>last name:</strong> {{ student.last_name }}</p>
+    <p><strong>username:</strong> {{ student.username }}</p>
+    <p><strong>email:</strong> {{ student.email }}</p>
+    <p><strong>university:</strong> {{ student.university }}</p>
+    <p><strong>major:</strong> {{ student.major }}</p>
+    <p><strong>year:</strong> {{ student.year }}</p>
+{% endblock %}
+```

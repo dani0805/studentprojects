@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>{{ project.name }} </title>
+{% endblock %}
+
+{% block body %}
+    <!-- project read only view using django model introspection and bootstrap style -->
+    <p><strong>name:</strong> {{ project.title }}</p>
+    <p><strong>description:</strong> {{ project.description }}</p>
+{% endblock %}
+```

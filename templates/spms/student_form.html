@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block head %}
+    {% if student %}
+        <title>Editing {{ student.first_name }}, {{ student.last_name }} ({{ student.username }}) </title>
+    {% else %}
+        <title>New Student</title>
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    <!-- student edit form using django forms and bootstrap style if student object in context, otherwise create new -->
+    {% if student %}
+        <h1>Edit Student</h1>
+        <form method="post" action="{% url 'student_update' pk=student.pk %}" class="student-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="save btn btn-default">Save</button>
+        </form>
+    {% else %}
+        <h1>Create Student</h1>
+        <form method="post" action="{% url 'student_create' %}" class="student-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="save btn btn-default">Save</button>
+        </form>
+    {% endif %}
+{% endblock %}
+```

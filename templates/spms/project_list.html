@@ -1,0 +1,27 @@
+{%  extends 'base.html' %}
+{%  block head %}
+    <title>Projects</title>
+{%  endblock %}
+{% block body %}
+<h1>Projects</h1>
+    <!-- button bar with create, edit, delete in a div with class="btn-group" -->
+    <div class="btn-group">
+        <a href="/project/create" class="btn btn-primary">Create</a>
+
+    </div>
+
+    <ul class="list-group">
+        {% for project in project_list %}
+            <li class="list-group-item">
+                <a href="/project/{{ project.id }}" class="btn btn-primary">View</a>
+                <a href="/project/{{ project.id }}/update" class="btn btn-primary">Edit</a>
+                <a href="/project/{{ project.id }}/delete" class="btn btn-primary">Delete</a>
+                <form style="display: inline" action="{% url 'project_task_create' project.id %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" value="Create Tasks" class="btn btn-primary">
+                </form>
+                {{ project.title }}, {{ project.code_files }}, {{ project.tasks.all | length }}
+        {% endfor %}
+    </ul>
+
+{% endblock %}
